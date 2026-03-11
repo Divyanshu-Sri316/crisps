@@ -9,3 +9,4 @@ sentence-transformers
 pgvector
 alembic
 pydantic
+pydantic[email]
