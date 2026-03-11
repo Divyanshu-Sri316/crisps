@@ -1,0 +1,87 @@
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import API from "../api/api"
+
+export default function Register() {
+
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
+  const [loading,setLoading] = useState(false)
+  const [error,setError] = useState("")
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+    setLoading(true)
+    setError("")
+
+    try{
+
+      await API.post("/auth/register",{
+        email,
+        password
+      })
+
+      alert("Account created successfully")
+      window.location="/login"
+
+    }catch(err){
+
+      setError(err.response?.data?.detail || "Registration failed")
+
+    }finally{
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="h-screen flex justify-center items-center bg-gray-100">
+
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-8 rounded-xl shadow-lg w-96 space-y-4"
+      >
+
+        <h2 className="text-2xl font-bold text-center">
+          Create Account
+        </h2>
+
+        {error && (
+          <div className="text-red-500 text-sm">
+            {error}
+          </div>
+        )}
+
+        <input
+          className="border p-2 w-full rounded"
+          placeholder="Email"
+          value={email}
+          onChange={(e)=>setEmail(e.target.value)}
+        />
+
+        <input
+          className="border p-2 w-full rounded"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e)=>setPassword(e.target.value)}
+        />
+
+        <button
+          className="bg-indigo-600 hover:bg-indigo-700 text-white w-full py-2 rounded transition"
+          disabled={loading}
+        >
+          {loading ? "Creating..." : "Register"}
+        </button>
+
+        <p className="text-sm text-center">
+          Already have an account?{" "}
+          <Link className="text-indigo-600" to="/login">
+            Login
+          </Link>
+        </p>
+
+      </form>
+
+    </div>
+  )
+}
