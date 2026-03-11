@@ -1,10 +1,12 @@
 import API from "../api/api"
+import toast from "react-hot-toast"
 
 export default function NoteCard({ note, refreshNotes }) {
 
   const deleteNote = async () => {
     await API.delete(`/notes/${note.id}`)
     refreshNotes()
+    toast.success("Note deleted")
   }
 
   return (

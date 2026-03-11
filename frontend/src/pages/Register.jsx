@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import API from "../api/api"
+import toast from "react-hot-toast"
 
 export default function Register() {
 
@@ -21,12 +22,19 @@ export default function Register() {
         password
       })
 
-      alert("Account created successfully")
-      window.location="/login"
+      toast.success("Account created successfully!")
+
+      setTimeout(()=>{
+        window.location="/login"
+      },1500)
 
     }catch(err){
 
-      setError(err.response?.data?.detail || "Registration failed")
+      const message = err.response?.data?.detail || "Registration failed"
+
+      toast.error(`Error: ${message}`)
+
+      setError(message)
 
     }finally{
       setLoading(false)
@@ -38,18 +46,12 @@ export default function Register() {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-xl shadow-lg w-96 space-y-4"
+        className="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-xl w-96 space-y-4"
       >
 
         <h2 className="text-2xl font-bold text-center">
           Create Account
         </h2>
-
-        {error && (
-          <div className="text-red-500 text-sm">
-            {error}
-          </div>
-        )}
 
         <input
           className="border p-2 w-full rounded"

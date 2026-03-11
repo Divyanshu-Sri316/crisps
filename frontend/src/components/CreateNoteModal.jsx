@@ -1,5 +1,6 @@
 import { useState } from "react"
 import API from "../api/api"
+import toast from "react-hot-toast"
 
 export default function CreateNoteModal({ closeModal, refreshNotes }) {
 
@@ -15,6 +16,7 @@ export default function CreateNoteModal({ closeModal, refreshNotes }) {
     })
 
     refreshNotes()
+    toast.success("Note created!")
     closeModal()
   }
 

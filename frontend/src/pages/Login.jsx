@@ -1,6 +1,7 @@
 import { useState } from "react"
 import API from "../api/api"
 import { Link } from "react-router-dom"
+import toast from "react-hot-toast"
 
 export default function Login() {
 
@@ -8,7 +9,9 @@ export default function Login() {
   const [password,setPassword] = useState("")
 
   const handleSubmit = async (e)=>{
-    e.preventDefault()
+  e.preventDefault()
+
+  try {
 
     const res = await API.post("/auth/login",{
       email,
@@ -17,7 +20,16 @@ export default function Login() {
 
     localStorage.setItem("token",res.data.access_token)
 
-    window.location="/"
+    toast.success("Login successful!")
+
+    setTimeout(()=>{
+      window.location="/"
+    },1000)
+
+  } catch(err){
+
+    toast.error("Invalid email or password")
+    }
   }
 
   return (

@@ -2,6 +2,8 @@ import { motion } from "framer-motion"
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 
+import toast from "react-hot-toast"
+
 export default function Navbar() {
 
   const navigate = useNavigate()
@@ -13,6 +15,7 @@ export default function Navbar() {
 
   const logout = () => {
     localStorage.removeItem("token")
+    toast.success("Logged out successfully")
     setToken(null)
     window.location.href = "/"
   }
