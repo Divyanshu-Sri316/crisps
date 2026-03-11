@@ -21,11 +21,10 @@ export default function Login() {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center">
-
+<div className="h-screen flex justify-center items-center bg-gradient-to-br from-indigo-100 to-purple-200">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded shadow-md w-80"
+        className="bg-white/90 backdrop-blur-md p-10 rounded-2xl shadow-xl w-96"
       >
 
         <h2 className="text-xl font-bold mb-4">Login</h2>

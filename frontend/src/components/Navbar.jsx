@@ -23,13 +23,13 @@ export default function Navbar() {
 
   return (
     <motion.div
-      className="bg-white shadow-md p-4 flex justify-between"
+      className="backdrop-blur-md bg-white/70 border-b border-gray-200 px-8 py-4 flex justify-between items-center sticky top-0 z-50"
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
     >
 
       <h1
-        className="text-xl font-bold text-indigo-600 cursor-pointer"
+        className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent cursor-pointer"
         onClick={() => navigate("/dashboard")}
       >
         AI Notes
@@ -38,14 +38,14 @@ export default function Navbar() {
       {token ? (
         <button
           onClick={logout}
-          className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl shadow transition"
         >
           Logout
         </button>
       ) : (
         <button
           onClick={goLogin}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl shadow"
         >
           Login
         </button>

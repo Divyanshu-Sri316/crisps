@@ -25,21 +25,26 @@ export default function Dashboard() {
   },[])
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-purple-100">
 
       <Navbar/>
 
-      <div className="p-8">
+      <div className="max-w-6xl mx-auto px-6 py-10">
 
-        <SearchBar onSearch={searchNotes}/>
-        <button
-        className="bg-green-500 text-white px-4 py-2 rounded mb-4"
-        onClick={()=>setShowModal(true)}
-        >
-        + New Note
-        </button>
+        <div className="flex justify-between items-center mb-6">
 
-        <div className="grid grid-cols-3 gap-4">
+          <SearchBar onSearch={searchNotes}/>
+
+          <button
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl shadow-md transition transform hover:scale-105"
+          onClick={()=>setShowModal(true)}
+          >
+          + New Note
+          </button>
+
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {notes.map(note => (
             <NoteCard
@@ -52,12 +57,14 @@ export default function Dashboard() {
         </div>
 
       </div>
+
       {showModal && (
         <CreateNoteModal
             closeModal={()=>setShowModal(false)}
             refreshNotes={fetchNotes}
         />
-        )}
+      )}
+
     </div>
   )
 }
