@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from sqlalchemy import text
 
 from app.database.db import engine
-from app.database.base import Base
+from app.database.models import Base
 
 from app.models.user import User
 from app.models.note import Note
@@ -26,6 +26,7 @@ app.add_middleware(
 
 with engine.connect() as conn:
     conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+    conn.commit()
 
 
 Base.metadata.create_all(bind=engine)
