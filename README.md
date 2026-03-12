@@ -291,6 +291,7 @@ This project is for educational purposes.
 
 # 👨‍💻 Author
 
-Built by **[Your Name]**
+Built by **Divyanshu Srivastava**
 
 Full-stack project demonstrating **AI-powered semantic search with modern web architecture**.
+
